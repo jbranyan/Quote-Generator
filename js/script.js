@@ -58,20 +58,22 @@ function getRandomQuote(){
 
 //Used to autorefresh the quote and background color displayed on the page
 function autorefreshQuotes(){
-  getBackgroundColor();
   printQuote();
 }
 
-//Creates a random color and sets it to the background color
+//Creates a random color
 //Source: https://dev.to/akhil_001/generating-random-color-with-single-line-of-js-code-fhj
-function getBackgroundColor() {
+function getRandomColor() {
   let randomColor = '#'+ Math.floor(Math.random()*16777215).toString(16);
-  document.body.style.backgroundColor = randomColor;
+  return randomColor;
 }
 
-//Builds the quote to display on the page
+//Builds the quote to display on the page and sets the background color
 function printQuote(){
-  
+
+  //sets the background color
+  document.body.style.backgroundColor = getRandomColor();
+
   let randomQuote = getRandomQuote();
   let html = `
   <p class="quote"> ${randomQuote.quote} </p>
@@ -100,5 +102,5 @@ function printQuote(){
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
 
 //Sets the background color when the button is clicked
-document.getElementById('load-quote').addEventListener("click", getBackgroundColor, false);
+document.getElementById('load-quote').addEventListener("click", getRandomColor, false);
 
