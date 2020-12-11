@@ -48,7 +48,7 @@ const quotes = [
 ]
 
 //sets the refresh interval for the quote and page background color
-const refreshTime = setInterval(autorefreshQuotes, 6000);
+var refreshTime = setInterval(autorefreshQuotes, 6000);
 
 //Assigns a random number in order to select a quote from the array
 function getRandomQuote(){
@@ -63,7 +63,7 @@ function autorefreshQuotes(){
 
 //Creates a random color
 //Source: https://dev.to/akhil_001/generating-random-color-with-single-line-of-js-code-fhj
-function getRandomColor() {
+function setRandomColor() {
   let randomColor = '#'+ Math.floor(Math.random()*16777215).toString(16);
   return randomColor;
 }
@@ -72,7 +72,10 @@ function getRandomColor() {
 function printQuote(){
 
   //sets the background color
-  document.body.style.backgroundColor = getRandomColor();
+  document.body.style.backgroundColor = setRandomColor();
+  clearInterval(refreshTime);
+  refreshTime = setInterval(autorefreshQuotes, 6000);
+
 
   let randomQuote = getRandomQuote();
   let html = `
@@ -102,5 +105,5 @@ function printQuote(){
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
 
 //Sets the background color when the button is clicked
-document.getElementById('load-quote').addEventListener("click", getRandomColor, false);
+document.getElementById('load-quote').addEventListener("click", setRandomColor, false);
 
