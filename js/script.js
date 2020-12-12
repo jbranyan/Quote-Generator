@@ -73,6 +73,8 @@ function printQuote(){
 
   //sets the background color
   document.body.style.backgroundColor = setRandomColor();
+  
+  //resets the interval timer on button click to enhance user experience
   clearInterval(refreshTime);
   refreshTime = setInterval(autorefreshQuotes, 6000);
 
